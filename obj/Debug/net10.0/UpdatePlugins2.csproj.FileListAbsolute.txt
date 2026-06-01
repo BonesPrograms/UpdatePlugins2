@@ -1,0 +1,14 @@
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\bin\Debug\net10.0\UpdatePlugins2.exe
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\bin\Debug\net10.0\UpdatePlugins2.deps.json
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\bin\Debug\net10.0\UpdatePlugins2.runtimeconfig.json
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\bin\Debug\net10.0\UpdatePlugins2.dll
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\bin\Debug\net10.0\UpdatePlugins2.pdb
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.AssemblyInfoInputs.cache
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.AssemblyInfo.cs
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.csproj.CoreCompileInputs.cache
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.dll
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\refint\UpdatePlugins2.dll
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.pdb
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.genruntimeconfig.cache
+c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\ref\UpdatePlugins2.dll

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "UpdatePlugins2/1.0.0": {
+        "runtime": {
+          "UpdatePlugins2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "UpdatePlugins2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
