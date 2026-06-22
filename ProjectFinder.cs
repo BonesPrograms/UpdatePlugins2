@@ -1,23 +1,22 @@
-namespace UpdatePlugins2;
-public class ProjectFinder //this requires folder names, assembly names, and csproj names to be the same!
-{
-    const string Root = @"C:\Users\user\Desktop\VietnamWarModLab";
+using System.Collections.Immutable;
+using System.Text;
+using BonesClassLibrary.FileFinders;
 
-    public Dictionary<string, string> ProjectRoots => _projectRoots ??= GetProjectRoots(); //Key is Name, Value is Folder Path
-    Dictionary<string, string>? _projectRoots;
-    readonly string[] _projectFiles = Directory.GetFiles(Root, "*.csproj", SearchOption.AllDirectories);
+namespace UpdatePlugins2;
+public static class ProjectFinder //this requires folder names, assembly names, and csproj names to be the same!
+{
+    static readonly string Root = VietnamWarModLab.Path;
+    static readonly string[] _projectFiles = Directory.GetFiles(Root, "*.csproj", SearchOption.AllDirectories);
     static string RecombinePath(string[] array) //can do root + projName, string concat, or substring, or path combine
     {                                           
-        string path = string.Empty;             
+        StringBuilder path = new();            
         for (int i = 0; i < array.Length - 1; i++)
         {
-            path += i > 0 ? $@"\{array[i]}" : array[i];
+            path.Append(i > 0 ? $@"\{array[i]}" : array[i]);
         }
-        return path;
+        return path.ToString();
     }
-
-
-    Dictionary<string, string> GetProjectRoots()
+    public static Dictionary<string, string> GetProjectRoots()
     {
         Dictionary<string, string> projAndFolders = [];
         foreach (var proj in _projectFiles)

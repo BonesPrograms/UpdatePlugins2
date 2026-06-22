@@ -1,17 +1,9 @@
 using UpdatePlugins2;
 
-ProjectFinder finder = new();
-Dictionary<string, string> roots = finder.ProjectRoots;
-
-ModFetcher fetcher = new(roots);
-List<Mod> mods = fetcher.Mods;
-
-ModSerializer serializer = new(mods);
-HashSet<Mod> needsUpdate = serializer.CheckAndSave();
-
-DLLUpdater updater = new(roots, needsUpdate);
-updater.UpdatePlugins();
-
+Dictionary<string,string> roots = ProjectFinder.GetProjectRoots();
+List<Mod> mods = ModFetcher.FetchMods(roots);
+HashSet<Mod> needsUpdate = new ModSerializer(mods).SaveAndGetUpdatedMods();
+DLLUpdater.UpdatePlugins(roots, needsUpdate);
 
 // bool DLLDelegate(string dll)
 // {

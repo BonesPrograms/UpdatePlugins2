@@ -1,36 +1,29 @@
 using System.Diagnostics;
+using BonesClassLibrary.FileFinders;
+using System.Collections.Immutable;
 
 namespace UpdatePlugins2;
-public class DLLUpdater
+public static class DLLUpdater
 {
-    const string TransferDirectory = @"C:\Program Files (x86)\Steam\steamapps\common\VietnamWar\BepInEx\plugins\";
-    readonly Dictionary<string, string> _projectRoots;
-    readonly HashSet<Mod> _needsUpdate;
-
-    public DLLUpdater(Dictionary<string, string> roots, HashSet<Mod> needsUpdate)
+    static readonly string TransferDirectory = Path.Combine(VietnamWarSource.Path, @"BepInEx\plugins");
+    public static void UpdatePlugins(Dictionary<string, string> roots, HashSet<Mod> needsUpdate)
     {
-        _projectRoots = roots;
-        _needsUpdate = needsUpdate;
-    }
-
-    public void UpdatePlugins()
-    {
-        string[] names = [.. _projectRoots.Keys];
-        foreach (var mod in _needsUpdate)
+        string[] names = [.. roots.Keys];
+        foreach (var mod in needsUpdate)
         {
             if (names.Contains(mod.Name))
             {
                 Console.WriteLine($"Updating {mod.Name}!");
-                if (!BuildDLL(mod.Name, _projectRoots[mod.Name]))
+                if (!BuildDLL(mod.Name, roots[mod.Name]))
                     throw new Exception($"Warning: DLL building process failed, aborting. Target project: {mod.Name}");
-                string dllpath = @$"{_projectRoots[mod.Name]}\bin\Debug\net6.0\{mod.Name}.dll";
-                string pluginpath = @$"{TransferDirectory}{mod.Name}.dll";
+                string dllpath = @$"{roots[mod.Name]}\bin\Debug\net6.0\{mod.Name}.dll";
+                string pluginpath = @$"{TransferDirectory}\{mod.Name}.dll";
                 File.Copy(dllpath, pluginpath, true);
                 Console.WriteLine($"{mod.Name}.dll succesfully copied to {pluginpath}!");
             }
         }
     }
-    static bool BuildDLL(string name, string folder)
+    static bool BuildDLL(string name, string folder) //proccess.waitforexit?
     {
        // string path = @$"{folder}\{name}.csproj"; i was never actually using this i was just using the folder path
          //apparently both work but they work slightly differently, its fine here tho

@@ -12,3 +12,4 @@ c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\refint\U
 c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.pdb
 c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.genruntimeconfig.cache
 c:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\ref\UpdatePlugins2.dll
+C:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\obj\Debug\net10.0\UpdatePlugins2.sourcelink.json

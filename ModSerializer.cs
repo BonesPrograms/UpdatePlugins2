@@ -1,35 +1,35 @@
 using System.Xml.Serialization;
+using BonesClassLibrary.FileFinders;
 
 namespace UpdatePlugins2;
 
 public class ModSerializer
 {
-
-    const string SaveLocation = @"C:\Users\user\Desktop\VietnamWarModLab\UpdatePlugins2\ModData\VietnamWar";
+    static readonly string SaveLocation = Path.Combine(VietnamWarModLab.Path, @"UpdatePlugins2\ModData\VietnamWar");
     readonly string[] _saveFolders = Directory.GetDirectories(SaveLocation);
     readonly List<Mod> _mods;
     readonly HashSet<Mod> _needsUpdate = [];
-    readonly XmlSerializer Serializer = new(typeof(CSFile));
+    static readonly XmlSerializer Serializer = new(typeof(CSFile));
     public ModSerializer(List<Mod> mods)
     {
         _mods = mods;
     }
 
     //runs the serializer/deserializer, dumps mods that need to be updated
-    public HashSet<Mod> CheckAndSave()
+    public HashSet<Mod> SaveAndGetUpdatedMods()
     {
         foreach (var mod in _mods)
         {
             string path = GetSaveFolderPath(mod);
             Dictionary<string, string> saveData = GetSavedData(mod, path, out List<string> newFiles);
-            CheckIfNeedsSerialize(saveData, mod, newFiles);
+            CheckForUpdate(saveData, mod, newFiles);
         }
         return _needsUpdate;
     }
 
     //compares serialized data to cs file data, re-serializes if cs file data and serialized data arent equal
     //adds mods that have updated cs files to the dump
-    void CheckIfNeedsSerialize(Dictionary<string, string> saveData, Mod mod, List<string> newFiles)
+    void CheckForUpdate(Dictionary<string, string> saveData, Mod mod, List<string> newFiles)
     {
         bool update = false;
         foreach (var save in saveData)

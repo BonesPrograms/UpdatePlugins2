@@ -1,19 +1,12 @@
+using System.Collections.Immutable;
+
 namespace UpdatePlugins2;
-public class ModFetcher
+public static class ModFetcher
 {
-
-    public List<Mod> Mods => _mods ??= FetchMods();
-    List<Mod>? _mods;
-    readonly Dictionary<string, string> _projectRoots;
-    public ModFetcher(Dictionary<string, string> roots)
-    {
-        _projectRoots = roots;
-    }
-
-    List<Mod> FetchMods()
+    public static List<Mod> FetchMods(Dictionary<string, string> roots)
     {
         List<Mod> mods = [];
-        foreach (var proj in _projectRoots)
+        foreach (var proj in roots)
         {
             IEnumerable<string> filePaths = Directory.EnumerateFiles(proj.Value, "*.cs", SearchOption.AllDirectories).Where(path => !path.Contains(@"\obj\"));
             List<CSFile> csFiles = GetCSFiles(filePaths);
