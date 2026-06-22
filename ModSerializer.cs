@@ -6,13 +6,13 @@ namespace UpdatePlugins2;
 public class ModSerializer
 {
     static readonly string SaveLocation = Path.Combine(VietnamWarModLab.Path, @"UpdatePlugins2\ModData\VietnamWar");
-    HashSet<Mod> NeedUpdate = null!;
+    readonly HashSet<Mod> NeedUpdate = [];
     static readonly XmlSerializer Serializer = new(typeof(CSFile));
 
     //runs the serializer/deserializer, dumps mods that need to be updated
     public HashSet<Mod> SaveAndGetUpdatedMods(List<Mod> mods)
     {
-        NeedUpdate = [];
+        NeedUpdate.Clear();
         foreach (var mod in mods)
         {
             string path = GetSaveFolderPath(mod);
