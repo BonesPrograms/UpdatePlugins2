@@ -2,7 +2,7 @@ using UpdatePlugins2;
 
 Dictionary<string,string> roots = ProjectFinder.GetProjectRoots();
 List<Mod> mods = ModFetcher.FetchMods(roots);
-HashSet<Mod> needsUpdate = new ModSerializer(mods).SaveAndGetUpdatedMods();
+HashSet<Mod> needsUpdate = new ModSerializer().SaveAndGetUpdatedMods(mods);
 DLLUpdater.UpdatePlugins(roots, needsUpdate);
 
 // bool DLLDelegate(string dll)

@@ -6,25 +6,20 @@ namespace UpdatePlugins2;
 public class ModSerializer
 {
     static readonly string SaveLocation = Path.Combine(VietnamWarModLab.Path, @"UpdatePlugins2\ModData\VietnamWar");
-    readonly string[] _saveFolders = Directory.GetDirectories(SaveLocation);
-    readonly List<Mod> _mods;
-    readonly HashSet<Mod> _needsUpdate = [];
+    HashSet<Mod> NeedUpdate = null!;
     static readonly XmlSerializer Serializer = new(typeof(CSFile));
-    public ModSerializer(List<Mod> mods)
-    {
-        _mods = mods;
-    }
 
     //runs the serializer/deserializer, dumps mods that need to be updated
-    public HashSet<Mod> SaveAndGetUpdatedMods()
+    public HashSet<Mod> SaveAndGetUpdatedMods(List<Mod> mods)
     {
-        foreach (var mod in _mods)
+        NeedUpdate = [];
+        foreach (var mod in mods)
         {
             string path = GetSaveFolderPath(mod);
             Dictionary<string, string> saveData = GetSavedData(mod, path, out List<string> newFiles);
             CheckForUpdate(saveData, mod, newFiles);
         }
-        return _needsUpdate;
+        return NeedUpdate;
     }
 
     //compares serialized data to cs file data, re-serializes if cs file data and serialized data arent equal
@@ -55,11 +50,11 @@ public class ModSerializer
         
         if (update)
         {
-            _needsUpdate.Add(mod);
+            NeedUpdate.Add(mod);
         }
     }
 
-    void SerializeCSFile(string path, CSFile file)
+    static void SerializeCSFile(string path, CSFile file)
     {
         StreamWriter writer = new(path);
         Serializer.Serialize(writer, file);
@@ -110,7 +105,7 @@ public class ModSerializer
                 File.Delete(save.Value);
                 saveFiles.Remove(save.Key);
                 Console.WriteLine($"Deleting {save.Value} from XML!!");
-                _needsUpdate.Add(mod);
+                NeedUpdate.Add(mod);
             }
         }
     }
@@ -130,7 +125,7 @@ public class ModSerializer
 
 
     //finds or creates the save folder for a mod if there isnt one
-    string GetSaveFolderPath(Mod mod)
+    static string GetSaveFolderPath(Mod mod)
     {
         string? path = CompareFolderNames(mod);
         if (path == null)
@@ -145,9 +140,9 @@ public class ModSerializer
     }
 
     //checks to see if a save folder for a mod exists
-    string? CompareFolderNames(Mod mod)
+    static string? CompareFolderNames(Mod mod)
     {
-        foreach (var folder in _saveFolders)
+        foreach (var folder in Directory.GetDirectories(SaveLocation))
         {
             string[] path = folder.Split('\\');
             string name = path[^1];

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UpdatePlugins2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eed94b128d85ddd0c8d895779081312dcf6b774")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d88c07a3749b1a4a4e61a246ac16725944f7d56")]
 [assembly: System.Reflection.AssemblyProductAttribute("UpdatePlugins2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UpdatePlugins2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
