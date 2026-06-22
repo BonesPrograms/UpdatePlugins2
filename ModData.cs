@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 namespace UpdatePlugins2;
 public class Mod
 {
-    public List<CSFile> Files = [];
+    public List<CSFile> Files;
     public string Name;
     public string FolderPath;
     public Mod(List<CSFile> files, string name, string path)
@@ -18,15 +18,15 @@ public class Mod
 public class CSFile
 {
     [XmlElement]
-    public DateTime? LastWrite;
+    public DateTime LastWrite = default!;
 
     [XmlElement]
-    public string? Path;
+    public string Path = null!;
 
     [XmlElement]
-    public string? Name;
+    public string Name = null!;
 
-    public CSFile()
+    CSFile()
     {
 
     }
