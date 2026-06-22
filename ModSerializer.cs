@@ -6,6 +6,8 @@ namespace UpdatePlugins2;
 public class ModSerializer
 {
     static readonly string SaveLocation = Path.Combine(VietnamWarModLab.Path, @"UpdatePlugins2\ModData\VietnamWar");
+
+    static readonly string[] SaveFolders = Directory.GetDirectories(SaveLocation);
     readonly HashSet<Mod> NeedUpdate = [];
     static readonly XmlSerializer Serializer = new(typeof(CSFile));
 
@@ -142,7 +144,7 @@ public class ModSerializer
     //checks to see if a save folder for a mod exists
     static string? CompareFolderNames(Mod mod)
     {
-        foreach (var folder in Directory.GetDirectories(SaveLocation))
+        foreach (var folder in SaveFolders)
         {
             string[] path = folder.Split('\\');
             string name = path[^1];
