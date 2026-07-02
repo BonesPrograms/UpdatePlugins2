@@ -1,6 +1,6 @@
 using System.Collections.Immutable;
 using System.Text;
-using BonesClassLibrary.FileFinders;
+using BonesClassLibrary.IO;
 
 namespace UpdatePlugins2;
 public static class ProjectFinder //this requires folder names, assembly names, and csproj names to be the same!

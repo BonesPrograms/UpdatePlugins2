@@ -1,5 +1,5 @@
 using System.Xml.Serialization;
-using BonesClassLibrary.FileFinders;
+using BonesClassLibrary.IO;
 
 namespace UpdatePlugins2;
 
@@ -77,7 +77,7 @@ public class ModSerializer
     static List<string> AddNewFiles(Dictionary<string, string> saveFiles, List<CSFile> csFiles, string path)
     {
         List<string> newfiles = [];
-        string[] names = [.. saveFiles.Keys];
+        HashSet<string> names = [.. saveFiles.Keys];
         foreach (var file in csFiles)
         {
             if (!names.Contains(file.Name))
